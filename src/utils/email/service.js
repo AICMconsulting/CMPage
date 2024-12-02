@@ -1,46 +1,49 @@
-import emailjs from '@emailjs/browser';
+import nodemailer from 'nodemailer';
 import { emailConfig } from './config';
 import { validateEmailData } from './validation';
+import { createContactEmailTemplate } from './templates';
 
-export async function initEmailService() {
-  try {
-    emailjs.init(emailConfig.publicKey);
-    console.log('EmailJS initialized successfully');
-  } catch (error) {
-    console.error('Error initializing EmailJS:', error);
-    throw error;
+// Create reusable transporter object using Office 365
+const transporter = nodemailer.createTransport({
+  host: "smtp.office365.com",
+  port: 587,
+  secure: false,
+  auth: {
+    user: "contactos@cmconsulting.com.co",
+    pass: process.env.EMAIL_PASS || ""
+  },
+  tls: {
+    ciphers: 'SSLv3',
+    rejectUnauthorized: false
   }
-}
+});
 
-export async function sendContactForm(formData) {
+export async function sendContactForm(data) {
   try {
-    const data = Object.fromEntries(formData);
-    
     // Validate form data
     const validation = validateEmailData(data);
     if (!validation.isValid) {
       throw new Error(validation.errors.join(', '));
     }
 
-    // Create a form element to use with EmailJS
-    const form = document.createElement('form');
-    formData.forEach((value, key) => {
-      const input = document.createElement('input');
-      input.name = key;
-      input.value = value;
-      form.appendChild(input);
-    });
+    // Create email template
+    const emailTemplate = createContactEmailTemplate(data);
 
-    const result = await emailjs.sendForm(
-      emailConfig.serviceId,
-      emailConfig.templateId,
-      form,
-      emailConfig.publicKey
-    );
-
-    return result;
+    // Send email
+    const info = await transporter.sendMail(emailTemplate);
+    return { success: true, messageId: info.messageId };
   } catch (error) {
     console.error('Error sending email:', error);
+    throw error;
+  }
+}
+
+export async function initEmailService() {
+  try {
+    await transporter.verify();
+    console.log('Email service initialized successfully');
+  } catch (error) {
+    console.error('Error initializing email service:', error);
     throw error;
   }
 }

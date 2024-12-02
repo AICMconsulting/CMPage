@@ -1,38 +1,16 @@
-import { validateEmailData, createContactEmailTemplate } from '../../utils/email/index.js';
-import { initEmailService, sendContactForm } from '../../utils/email/service.js';
+import { initEmailService, sendContactForm } from '../../utils/email/index.js';
 
 export async function POST({ request }) {
   try {
     const data = await request.json();
     
-    // Validate request data
-    const validation = validateEmailData(data);
-    if (!validation.isValid) {
-      return new Response(
-        JSON.stringify({ 
-          success: false, 
-          error: validation.errors.join(', ')
-        }),
-        { 
-          status: 400,
-          headers: { 'Content-Type': 'application/json' }
-        }
-      );
-    }
-
-    // Initialize EmailJS
+    // Initialize email service
     await initEmailService();
 
-    // Create form data for EmailJS
-    const formData = new FormData();
-    Object.entries(data).forEach(([key, value]) => {
-      formData.append(key, value);
-    });
-
-    // Send email using EmailJS
-    const result = await sendContactForm(formData);
+    // Send email
+    const result = await sendContactForm(data);
     
-    if (result.status === 200) {
+    if (result.success) {
       return new Response(
         JSON.stringify({ success: true }),
         { 

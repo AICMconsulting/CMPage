@@ -1,5 +1,14 @@
 export const emailConfig = {
-  serviceId: import.meta.env.PUBLIC_EMAILJS_SERVICE_ID,
-  templateId: import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID,
-  publicKey: import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY
+  smtp: {
+    host: "smtp.office365.com",
+    port: 587,
+    secure: false,
+    auth: {
+      user: "contactos@cmconsulting.com.co"
+    },
+    tls: {
+      ciphers: 'SSLv3',
+      rejectUnauthorized: false
+    }
+  }
 };

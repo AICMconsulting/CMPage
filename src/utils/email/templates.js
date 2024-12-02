@@ -1,20 +1,20 @@
 export function createContactEmailTemplate(data) {
-  const { name, email, company, service, message } = data;
+  const { user_name, user_email, company, service, message } = data;
   
   return {
-    to: 'contactos@cmconsulting.com.co',
     from: {
-      email: 'noreply@cmconsulting.com.co',
-      name: 'CM Consulting Website'
+      name: "CM Consulting Website",
+      address: "contactos@cmconsulting.com.co"
     },
-    replyTo: email,
-    subject: `Nuevo mensaje de contacto - ${name}`,
+    to: "contactos@cmconsulting.com.co",
+    replyTo: user_email,
+    subject: `Nuevo mensaje de contacto - ${user_name}`,
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <h2 style="color: #163259;">Nuevo mensaje de contacto</h2>
         <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px;">
-          <p><strong>Nombre:</strong> ${name}</p>
-          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Nombre:</strong> ${user_name}</p>
+          <p><strong>Email:</strong> ${user_email}</p>
           ${company ? `<p><strong>Empresa:</strong> ${company}</p>` : ''}
           ${service ? `<p><strong>Servicio:</strong> ${service}</p>` : ''}
           <p><strong>Mensaje:</strong></p>
