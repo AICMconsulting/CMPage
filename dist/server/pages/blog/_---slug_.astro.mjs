@@ -19,9 +19,9 @@ const $$ = createComponent(async ($$result, $$props, $$slots) => {
   const { post } = Astro2.props;
   await getComments(post.Id);
   return renderTemplate`<!-- Rest of the template remains the same, but use the database fields -->`;
-}, "/home/project/src/pages/blog/[...slug].astro", void 0);
+}, "C:/Users/FelixRafaelSanchezFa/Documents/GitHub/CMPage/src/pages/blog/[...slug].astro", void 0);
 
-const $$file = "/home/project/src/pages/blog/[...slug].astro";
+const $$file = "C:/Users/FelixRafaelSanchezFa/Documents/GitHub/CMPage/src/pages/blog/[...slug].astro";
 const $$url = "/blog/[...slug]";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({

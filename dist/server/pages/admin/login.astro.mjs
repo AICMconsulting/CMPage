@@ -1,8 +1,8 @@
 /* empty css                                    */
 import { c as createComponent, r as renderTemplate, d as renderComponent, b as createAstro, m as maybeRenderHead } from '../../chunks/astro/server_BhKzNdWT.mjs';
 import 'kleur/colors';
-import { $ as $$Layout } from '../../chunks/Layout_DCoWSS9Q.mjs';
-import { i as isValidCredentials, g as generateToken } from '../../chunks/auth_CDaG1ZYe.mjs';
+import { $ as $$Layout } from '../../chunks/Layout_BSTTSMrw.mjs';
+import { i as isValidCredentials, g as generateToken } from '../../chunks/auth_CjNLsCQV.mjs';
 export { renderers } from '../../renderers.mjs';
 
 const $$Astro = createAstro();
@@ -50,9 +50,9 @@ Contraseña
 </label> <input type="password" id="password" name="password" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-corporate-blue focus:ring-corporate-blue"> </div> <button type="submit" class="w-full bg-corporate-blue text-white py-2 px-4 rounded-md hover:bg-corporate-blue/90 transition-colors">
 Iniciar sesión
 </button> </form> <div class="mt-4 text-sm text-gray-600 text-center"> <p>Usuario: admin</p> <p>Contraseña: admin123</p> </div> </div> </div> ` })} `;
-}, "/home/project/src/pages/admin/login.astro", void 0);
+}, "C:/Users/FelixRafaelSanchezFa/Documents/GitHub/CMPage/src/pages/admin/login.astro", void 0);
 
-const $$file = "/home/project/src/pages/admin/login.astro";
+const $$file = "C:/Users/FelixRafaelSanchezFa/Documents/GitHub/CMPage/src/pages/admin/login.astro";
 const $$url = "/admin/login";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({

@@ -1,6 +1,6 @@
 import { renderers } from './renderers.mjs';
-import { c as createExports, s as serverEntrypointModule } from './chunks/_@astrojs-ssr-adapter_C2Q_kKdY.mjs';
-import { manifest } from './manifest_CTMmi5iy.mjs';
+import { c as createExports, s as serverEntrypointModule } from './chunks/_@astrojs-ssr-adapter_2oMopAQD.mjs';
+import { manifest } from './manifest_B0ny0cv5.mjs';
 import './_astro-internal_middleware.mjs';
 
 const _page0 = () => import('./pages/_image.astro.mjs');
@@ -45,8 +45,8 @@ const _manifest = Object.assign(manifest, {
 });
 const _args = {
     "mode": "standalone",
-    "client": "file:///home/project/dist/client/",
-    "server": "file:///home/project/dist/server/",
+    "client": "file:///C:/Users/FelixRafaelSanchezFa/Documents/GitHub/CMPage/dist/client/",
+    "server": "file:///C:/Users/FelixRafaelSanchezFa/Documents/GitHub/CMPage/dist/server/",
     "host": true,
     "port": 4321,
     "assets": "_astro"

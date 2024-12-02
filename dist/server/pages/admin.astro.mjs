@@ -44,9 +44,9 @@ const $$Index = createComponent(async ($$result, $$props, $$slots) => {
     console.error("Error fetching admin data:", error);
   }
   return renderTemplate`<!-- Rest of the template remains the same -->`;
-}, "/home/project/src/pages/admin/index.astro", void 0);
+}, "C:/Users/FelixRafaelSanchezFa/Documents/GitHub/CMPage/src/pages/admin/index.astro", void 0);
 
-const $$file = "/home/project/src/pages/admin/index.astro";
+const $$file = "C:/Users/FelixRafaelSanchezFa/Documents/GitHub/CMPage/src/pages/admin/index.astro";
 const $$url = "/admin";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({

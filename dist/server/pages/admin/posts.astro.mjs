@@ -19,7 +19,7 @@ const $$AdminLayout = createComponent(async ($$result, $$props, $$slots) => {
   return renderTemplate`<html lang="es"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>${title} - Admin CM Consulting</title>${renderHead()}</head> <body class="bg-gray-100"> <div class="flex h-screen"> <!-- Sidebar --> <aside class="bg-corporate-blue text-white w-64 flex-shrink-0"> <div class="p-4"> <h1 class="text-xl font-bold">CM Consulting</h1> <p class="text-sm opacity-75">Panel Administrativo</p> </div> <nav class="mt-8"> <ul class="space-y-2"> ${menuItems.map((item) => renderTemplate`<li> <a${addAttribute(item.href, "href")} class="flex items-center px-4 py-2 hover:bg-corporate-blue-700 transition-colors"> <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"${addAttribute(item.icon, "d")}></path> </svg> ${item.text} </a> </li>`)} </ul> </nav> </aside> <!-- Main Content --> <main class="flex-1 overflow-y-auto"> <header class="bg-white shadow"> <div class="flex justify-between items-center px-6 py-4"> <h2 class="text-xl font-semibold text-gray-800">${title}</h2> <div class="flex items-center"> <button id="logoutBtn" class="text-gray-600 hover:text-corporate-blue transition-colors">
 Cerrar sesión
 </button> </div> </div> </header> <div class="container mx-auto"> ${renderSlot($$result, $$slots["default"])} </div> </main> </div> </body></html>`;
-}, "/home/project/src/layouts/AdminLayout.astro", void 0);
+}, "C:/Users/FelixRafaelSanchezFa/Documents/GitHub/CMPage/src/layouts/AdminLayout.astro", void 0);
 
 const $$Astro = createAstro();
 const $$Index = createComponent(async ($$result, $$props, $$slots) => {
@@ -46,9 +46,9 @@ Editar
 </a> <button class="text-red-600 hover:text-red-900 delete-post"${addAttribute(post.Id, "data-post-id")}>
 Eliminar
 </button> </td> </tr>`)} </tbody> </table> </div> </div> ` })} `;
-}, "/home/project/src/pages/admin/posts/index.astro", void 0);
+}, "C:/Users/FelixRafaelSanchezFa/Documents/GitHub/CMPage/src/pages/admin/posts/index.astro", void 0);
 
-const $$file = "/home/project/src/pages/admin/posts/index.astro";
+const $$file = "C:/Users/FelixRafaelSanchezFa/Documents/GitHub/CMPage/src/pages/admin/posts/index.astro";
 const $$url = "/admin/posts";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({

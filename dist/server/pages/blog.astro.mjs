@@ -1,7 +1,7 @@
 /* empty css                                 */
 import { c as createComponent, g as renderUniqueStylesheet, h as renderScriptElement, i as createHeadAndContent, r as renderTemplate, d as renderComponent, u as unescapeHTML, m as maybeRenderHead, a as addAttribute } from '../chunks/astro/server_BhKzNdWT.mjs';
 import 'kleur/colors';
-import { $ as $$Layout } from '../chunks/Layout_DCoWSS9Q.mjs';
+import { $ as $$Layout } from '../chunks/Layout_BSTTSMrw.mjs';
 import { Traverse } from 'neotraverse/modern';
 import pLimit from 'p-limit';
 import { removeBase, isRemotePath, prependForwardSlash } from '@astrojs/internal-helpers/path';
@@ -99,7 +99,7 @@ function dataStoreSingleton() {
 }
 const globalDataStore = dataStoreSingleton();
 
-const __vite_import_meta_env__ = {"ASSETS_PREFIX": undefined, "BASE_URL": "/", "DEV": false, "MODE": "production", "PROD": true, "SITE": undefined, "SSR": true};
+const __vite_import_meta_env__ = {"ASSETS_PREFIX": undefined, "BASE_URL": "/", "DEV": false, "MODE": "production", "PROD": true, "PUBLIC_EMAILJS_PUBLIC_KEY": "s4h-HviAW_hMfONCi", "PUBLIC_EMAILJS_SERVICE_ID": "service_0l6pjmv", "PUBLIC_EMAILJS_TEMPLATE_ID": "template_hcmbmjf", "SITE": undefined, "SSR": true};
 function createCollectionToGlobResultMap({
   globResult,
   contentDir
@@ -157,7 +157,7 @@ function createGetCollection({
       type === "content" ? contentCollectionToEntryMap[collection] : dataCollectionToEntryMap[collection]
     );
     let entries = [];
-    if (!Object.assign(__vite_import_meta_env__, {})?.DEV && cacheEntriesByCollection.has(collection)) {
+    if (!Object.assign(__vite_import_meta_env__, { Path: process.env.Path })?.DEV && cacheEntriesByCollection.has(collection)) {
       entries = cacheEntriesByCollection.get(collection);
     } else {
       const limit = pLimit(10);
@@ -296,7 +296,7 @@ function isPropagatedAssetsModule(module) {
 
 const contentDir = '/src/content/';
 
-const contentEntryGlob = /* #__PURE__ */ Object.assign({"/src/content/blog/bienvenidos.md": () => import('../chunks/bienvenidos_BDzhz9Oy.mjs')});
+const contentEntryGlob = /* #__PURE__ */ Object.assign({"/src/content/blog/bienvenidos.md": () => import('../chunks/bienvenidos_BB3KcPk4.mjs')});
 const contentCollectionToEntryMap = createCollectionToGlobResultMap({
 	globResult: contentEntryGlob,
 	contentDir,
@@ -326,7 +326,7 @@ function createGlobLookup(glob) {
 	};
 }
 
-const renderEntryGlob = /* #__PURE__ */ Object.assign({"/src/content/blog/bienvenidos.md": () => import('../chunks/bienvenidos_OSu-IxvD.mjs')});
+const renderEntryGlob = /* #__PURE__ */ Object.assign({"/src/content/blog/bienvenidos.md": () => import('../chunks/bienvenidos_DKuF3qCr.mjs')});
 const collectionToRenderEntryMap = createCollectionToGlobResultMap({
 	globResult: renderEntryGlob,
 	contentDir,
@@ -351,9 +351,9 @@ const $$Index = createComponent(async ($$result, $$props, $$slots) => {
   })} </time> </div> </div> </article>`)} </div> <!-- Newsletter Subscription --> <div class="max-w-2xl mx-auto mt-20 bg-corporate-blue rounded-lg shadow-xl p-8 text-white"> <h3 class="text-2xl font-bold mb-4">Suscríbete a nuestro newsletter</h3> <p class="mb-6">Recibe las últimas actualizaciones y artículos directamente en tu correo.</p> <form id="newsletterForm" class="flex gap-4"> <input type="email" placeholder="Tu correo electrónico" required class="flex-1 px-4 py-2 rounded-lg text-gray-900"> <button type="submit" class="bg-corporate-yellow text-corporate-blue px-6 py-2 rounded-lg font-semibold hover:bg-opacity-90 transition-colors">
 Suscribirse
 </button> </form> </div> </div> </div> ` })} `;
-}, "/home/project/src/pages/blog/index.astro", void 0);
+}, "C:/Users/FelixRafaelSanchezFa/Documents/GitHub/CMPage/src/pages/blog/index.astro", void 0);
 
-const $$file = "/home/project/src/pages/blog/index.astro";
+const $$file = "C:/Users/FelixRafaelSanchezFa/Documents/GitHub/CMPage/src/pages/blog/index.astro";
 const $$url = "/blog";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({

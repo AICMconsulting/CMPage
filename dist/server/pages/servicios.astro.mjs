@@ -1,7 +1,7 @@
 /* empty css                                 */
 import { c as createComponent, r as renderTemplate, d as renderComponent, m as maybeRenderHead, a as addAttribute, u as unescapeHTML } from '../chunks/astro/server_BhKzNdWT.mjs';
 import 'kleur/colors';
-import { $ as $$Layout } from '../chunks/Layout_DCoWSS9Q.mjs';
+import { $ as $$Layout } from '../chunks/Layout_BSTTSMrw.mjs';
 /* empty css                                     */
 export { renderers } from '../renderers.mjs';
 
@@ -137,9 +137,9 @@ Nuestro equipo está preparado para ayudarte a alcanzar tus objetivos tecnológi
 </p> <a href="/contacto" class="inline-block bg-corporate-blue text-white py-4 px-8 rounded-lg hover:bg-corporate-blue/90 transition-colors" data-astro-cid-wrzvmyuk>
 Contactar ahora
 </a> </div> </div> </div> ` })}  `;
-}, "/home/project/src/pages/servicios.astro", void 0);
+}, "C:/Users/FelixRafaelSanchezFa/Documents/GitHub/CMPage/src/pages/servicios.astro", void 0);
 
-const $$file = "/home/project/src/pages/servicios.astro";
+const $$file = "C:/Users/FelixRafaelSanchezFa/Documents/GitHub/CMPage/src/pages/servicios.astro";
 const $$url = "/servicios";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({

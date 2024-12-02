@@ -1,43 +1,101 @@
 import nodemailer from 'nodemailer';
-import dotenv from 'dotenv';
 export { renderers } from '../../renderers.mjs';
 
-dotenv.config();
+function validateEmailData(data) {
+  const errors = [];
+  
+  if (!data.user_name?.trim()) {
+    errors.push('El nombre es requerido');
+  }
+  
+  if (!data.user_email?.trim()) {
+    errors.push('El email es requerido');
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.user_email)) {
+    errors.push('El formato del email es inválido');
+  }
+  
+  if (!data.message?.trim()) {
+    errors.push('El mensaje es requerido');
+  }
+  
+  return {
+    isValid: errors.length === 0,
+    errors
+  };
+}
 
+function createContactEmailTemplate(data) {
+  const { user_name, user_email, company, service, message } = data;
+  
+  return {
+    from: {
+      name: "CM Consulting Website",
+      address: "contactos@cmconsulting.com.co"
+    },
+    to: "contactos@cmconsulting.com.co",
+    replyTo: user_email,
+    subject: `Nuevo mensaje de contacto - ${user_name}`,
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+        <h2 style="color: #163259;">Nuevo mensaje de contacto</h2>
+        <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px;">
+          <p><strong>Nombre:</strong> ${user_name}</p>
+          <p><strong>Email:</strong> ${user_email}</p>
+          ${company ? `<p><strong>Empresa:</strong> ${company}</p>` : ''}
+          ${service ? `<p><strong>Servicio:</strong> ${service}</p>` : ''}
+          <p><strong>Mensaje:</strong></p>
+          <p style="white-space: pre-wrap;">${message}</p>
+        </div>
+        <p style="color: #666; font-size: 12px; margin-top: 20px;">
+          Este mensaje fue enviado desde el formulario de contacto del sitio web.
+        </p>
+      </div>
+    `
+  };
+}
+
+// Create reusable transporter object using Office 365
 const transporter = nodemailer.createTransport({
   host: "smtp.office365.com",
   port: 587,
   secure: false,
   auth: {
-    user: process.env.EMAIL_USER || "contactos@cmconsulting.com.co",
-    pass: process.env.EMAIL_PASS
+    user: "contactos@cmconsulting.com.co",
+    pass: process.env.EMAIL_PASS || ""
+  },
+  tls: {
+    ciphers: 'SSLv3',
+    rejectUnauthorized: false
   }
 });
 
-async function sendContactEmail(data) {
-  const { name, email, company, service, message } = data;
-  
-  const mailOptions = {
-    from: '"CM Consulting Website" <contactos@cmconsulting.com.co>',
-    to: "contactos@cmconsulting.com.co",
-    subject: `Nuevo mensaje de contacto - ${name}`,
-    html: `
-      <h2>Nuevo mensaje de contacto</h2>
-      <p><strong>Nombre:</strong> ${name}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      ${company ? `<p><strong>Empresa:</strong> ${company}</p>` : ''}
-      ${service ? `<p><strong>Servicio:</strong> ${service}</p>` : ''}
-      <p><strong>Mensaje:</strong></p>
-      <p>${message}</p>
-    `
-  };
-
+async function sendContactForm(data) {
   try {
-    await transporter.sendMail(mailOptions);
-    return { success: true };
+    // Validate form data
+    const validation = validateEmailData(data);
+    if (!validation.isValid) {
+      throw new Error(validation.errors.join(', '));
+    }
+
+    // Create email template
+    const emailTemplate = createContactEmailTemplate(data);
+
+    // Send email
+    const info = await transporter.sendMail(emailTemplate);
+    return { success: true, messageId: info.messageId };
   } catch (error) {
     console.error('Error sending email:', error);
-    return { success: false, error: error.message };
+    throw error;
+  }
+}
+
+async function initEmailService() {
+  try {
+    await transporter.verify();
+    console.log('Email service initialized successfully');
+  } catch (error) {
+    console.error('Error initializing email service:', error);
+    throw error;
   }
 }
 
@@ -45,39 +103,11 @@ async function POST({ request }) {
   try {
     const data = await request.json();
     
-    // Validate required fields
-    const requiredFields = ['name', 'email', 'message'];
-    for (const field of requiredFields) {
-      if (!data[field]) {
-        return new Response(
-          JSON.stringify({ 
-            success: false, 
-            error: `Missing required field: ${field}` 
-          }),
-          { 
-            status: 400,
-            headers: { 'Content-Type': 'application/json' }
-          }
-        );
-      }
-    }
+    // Initialize email service
+    await initEmailService();
 
-    // Validate email format
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(data.email)) {
-      return new Response(
-        JSON.stringify({ 
-          success: false, 
-          error: 'Invalid email format' 
-        }),
-        { 
-          status: 400,
-          headers: { 'Content-Type': 'application/json' }
-        }
-      );
-    }
-
-    const result = await sendContactEmail(data);
+    // Send email
+    const result = await sendContactForm(data);
     
     if (result.success) {
       return new Response(
@@ -88,14 +118,18 @@ async function POST({ request }) {
         }
       );
     } else {
-      throw new Error(result.error || 'Error sending email');
+      throw new Error('Error sending email');
     }
   } catch (error) {
-    console.error('Contact API error:', error);
+    console.error('Contact API error:', {
+      error: error.message,
+      stack: error.stack
+    });
+    
     return new Response(
       JSON.stringify({ 
         success: false, 
-        error: 'Error processing contact form' 
+        error: 'Error al procesar el formulario de contacto' 
       }),
       { 
         status: 500,
