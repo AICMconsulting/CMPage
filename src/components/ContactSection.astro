@@ -51,7 +51,7 @@
       </div>
 
       <!-- Contact Information -->
-      <div class="mt-12 bg-white rounded-lg shadow-lg p-8">
+      <!-- <div class="mt-12 bg-white rounded-lg shadow-lg p-8">
         <h2 class="text-2xl font-bold text-corporate-blue mb-6">Información de Contacto</h2>
         <div class="space-y-4">
           <p class="flex items-center text-gray-600">
@@ -67,45 +67,7 @@
             <p class="text-gray-600">Domingos y festivos: Cerrado</p>
           </div>
         </div>
-      </div>
+      </div>-->
     </div>
   </div>
 </section>
-
-<script>
-  document.getElementById('contactForm')?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const submitButton = form.querySelector('button[type="submit"]');
-    const originalButtonText = submitButton.textContent;
-    
-    try {
-      submitButton.disabled = true;
-      submitButton.textContent = 'Enviando...';
-      
-      const formData = new FormData(form);
-      const data = Object.fromEntries(formData);
-      
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      });
-      
-      if (response.ok) {
-        alert('¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.');
-        form.reset();
-      } else {
-        throw new Error('Error al enviar el mensaje');
-      }
-    } catch (error) {
-      console.error('Error:', error);
-      alert('Lo sentimos, hubo un error al enviar tu mensaje. Por favor, intenta nuevamente.');
-    } finally {
-      submitButton.disabled = false;
-      submitButton.textContent = originalButtonText;
-    }
-  });
-</script>
