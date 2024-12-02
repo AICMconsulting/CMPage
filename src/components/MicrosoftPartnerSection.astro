@@ -1,0 +1,42 @@
+---
+const specializations = [
+  {
+    title: "Data & AI",
+    description: "Tenemos la experiencia y preparación para ayudar a nuestros clientes a administrar y controlar sus datos en varios sistemas para crear análisis y soluciones de IA.",
+    image: "/images/Data-AI-Azure-300x184.png"
+  },
+  {
+    title: "Digital & App Innovation",
+    description: "Sabemos como modernizar las aplicaciones existentes de nuestros clientes y creamos aplicaciones nativas de la nube aprovechando las características de los servicios Azure.",
+    image: "/images/Digital-App-Innovation-Azure-300x184.png"
+  },
+  {
+    title: "Infrastructure",
+    description: "¿Aún con aplicaciones ejecutando en infraestructura física? Migramos las actuales cargas de trabajo de nuestros clientes a Azure para que empiecen a usar la seguridad y las opciones de flexibilidad de la nube.",
+    image: "/images/Infrastructure-Azure-300x184.png"
+  }
+];
+---
+
+<div class="text-center mb-16">
+  <h2 class="text-4xl font-bold text-corporate-blue mb-6">Microsoft AI Cloud Partner Program</h2>
+  <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+    Como partner certificado de Microsoft, nos especializamos en tres áreas clave para impulsar la transformación digital de nuestros clientes
+  </p>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+  {specializations.map((spec) => (
+    <div class="bg-white rounded-lg p-8 shadow-lg hover:shadow-xl transition-shadow">
+      <div class="mb-6">
+        <img 
+          src={spec.image} 
+          alt={spec.title}
+          class="w-full h-auto rounded-lg mb-4"
+        />
+        <h3 class="text-2xl font-bold text-corporate-blue mb-4">{spec.title}</h3>
+      </div>
+      <p class="text-gray-600 leading-relaxed">{spec.description}</p>
+    </div>
+  ))}
+</div>

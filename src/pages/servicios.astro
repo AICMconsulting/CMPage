@@ -1,0 +1,220 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const services = [
+  {
+    id: "cloud",
+    title: "Soluciones Cloud",
+    description: "Ofrecemos implementación de servicios en la nube con plataformas líderes como Azure y Microsoft 365, y licenciamiento Microsoft.",
+    longDescription: "A través de nuestros servicios como Cloud Service Provider, acompañamos a las empresas en su transición a la nube, garantizando una migración segura y eficiente que mejora la agilidad y escalabilidad de sus operaciones.",
+    features: [
+      "Migración a Azure",
+      "Microsoft 365",
+      "Licenciamiento Microsoft",
+      "Optimización de costos",
+      "Seguridad cloud",
+      "Arquitectura serverless"
+    ],
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/>
+    </svg>`
+  },
+  {
+    id: "development",
+    title: "Desarrollo de Software",
+    description: "Contamos con experiencia en el desarrollo de software a medida, aplicando metodologías ágiles e híbridas.",
+    longDescription: "Desarrollamos aplicaciones empresariales y móviles, aprovechando las ventajas que ofrece la nube para brindar soluciones inteligentes y de alto valor.",
+    features: [
+      "Aplicaciones web",
+      "Apps móviles",
+      "Integración de APIs",
+      "Metodologías ágiles",
+      "DevOps",
+      "Desarrollo cloud-native"
+    ],
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+    </svg>`
+  },
+  {
+    id: "analytics",
+    title: "Analítica de Datos",
+    description: "Ofrecemos servicios especializados en analítica avanzada de datos, ayudando a las empresas a tomar decisiones basadas en datos.",
+    longDescription: "Utilizamos herramientas y técnicas de vanguardia, como Microsoft Fabric y los servicios de Azure, respaldados por el soporte de Microsoft, para transformar datos en información valiosa que impulsa el crecimiento, la eficiencia operativa y la reducción de costos.",
+    features: [
+      "Business Intelligence",
+      "Machine Learning",
+      "Microsoft Fabric",
+      "Visualización de datos",
+      "Predicción analítica",
+      "Big Data"
+    ],
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+    </svg>`
+  },
+  {
+    id: "consulting",
+    title: "Consultoría y Capacitación",
+    description: "Brindamos capacitación oficial en servicios y productos Microsoft, asegurando que nuestros clientes estén siempre a la vanguardia tecnológica.",
+    longDescription: "Organizamos eventos exclusivos centrados en nuestras áreas de especialización, incluyendo inteligencia artificial, proporcionando una oportunidad única para explorar las capacidades actuales y futuras de estas tecnologías.",
+    features: [
+      "Capacitación oficial Microsoft",
+      "Eventos especializados",
+      "Workshops de IA",
+      "Consultoría tecnológica",
+      "Transformación digital",
+      "Mejores prácticas"
+    ],
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+    </svg>`
+  },
+  {
+    id: "specialized",
+    title: "Servicios Especializados",
+    description: "Ayudamos en la configuración y optimización de herramientas SaaS, mejorando la productividad y colaboración de los equipos.",
+    longDescription: "Ofrecemos staffing y manpower especializado, así como interventoría técnica en proyectos de cualquier área de nuestras especializaciones, asegurando que cada proyecto sea llevado a cabo con el mayor nivel de precisión y conocimiento técnico.",
+    features: [
+      "Configuración de herramientas SaaS",
+      "Staffing especializado",
+      "Interventoría técnica",
+      "Optimización de procesos",
+      "Gestión de proyectos",
+      "Soporte especializado"
+    ],
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+    </svg>`
+  },
+  {
+    id: "management",
+    title: "Gestión y Operación",
+    description: "Nuestro enfoque en la gestión de proyectos incluye cronogramas detallados y metas claras.",
+    longDescription: "Contamos con gerentes de cuenta dedicados, quienes se integran como parte del equipo del cliente para asegurar una alineación total con sus objetivos y expectativas.",
+    features: [
+      "Gestión de proyectos",
+      "Cronogramas detallados",
+      "Gerentes de cuenta dedicados",
+      "Seguimiento de objetivos",
+      "Reportes de progreso",
+      "Optimización continua"
+    ],
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+    </svg>`
+  },
+  {
+    id: "support",
+    title: "Soporte Técnico",
+    description: "Brindamos soporte técnico especializado para garantizar que las soluciones implementadas funcionen de manera óptima y continua.",
+    longDescription: "Nuestro servicio de soporte incluye asistencia proactiva y reactiva, disponible para resolver cualquier incidencia técnica, asegurando la estabilidad y eficiencia de los sistemas tecnológicos de nuestros clientes. Además, ofrecemos soporte de infraestructura cloud, incluyendo servicios de Microsoft Azure.",
+    features: [
+      "Soporte proactivo",
+      "Soporte reactivo",
+      "Monitoreo 24/7",
+      "Resolución de incidencias",
+      "Soporte cloud",
+      "Mantenimiento preventivo"
+    ],
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/>
+    </svg>`
+  }
+];
+---
+
+<Layout title="Servicios - CM Consulting">
+  <div class="min-h-screen bg-gray-50">
+    <!-- Hero Section -->
+    <div class="bg-corporate-blue text-white py-20">
+      <div class="container mx-auto px-4">
+        <h1 class="text-5xl font-bold mb-6 text-center">Nuestros Servicios</h1>
+        <p class="text-xl text-center max-w-3xl mx-auto">
+          Soluciones tecnológicas integrales para impulsar tu negocio hacia el futuro digital
+        </p>
+      </div>
+    </div>
+
+    <!-- Services Section -->
+    <div class="container mx-auto px-4 py-20">
+      <div class="space-y-32">
+        {services.map((service) => (
+          <div id={service.id} class="scroll-mt-20">
+            <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-xl overflow-hidden transform hover:scale-[1.02] transition-all duration-500">
+              <div class="p-8 md:p-12">
+                <div class="flex items-center mb-8">
+                  <div class="text-corporate-blue mr-6" set:html={service.icon} />
+                  <div>
+                    <h2 class="text-3xl font-bold text-corporate-blue">{service.title}</h2>
+                    <p class="text-gray-600 mt-2">{service.description}</p>
+                  </div>
+                </div>
+                
+                <p class="text-gray-700 mb-8 leading-relaxed">{service.longDescription}</p>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                  <div class="bg-gray-50 rounded-lg p-6">
+                    <h3 class="text-lg font-semibold text-corporate-blue mb-4">Características principales</h3>
+                    <ul class="space-y-3">
+                      {service.features.map((feature) => (
+                        <li class="flex items-center text-gray-700">
+                          <svg class="w-5 h-5 text-corporate-yellow mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                          </svg>
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div class="bg-gray-50 rounded-lg p-6 flex flex-col justify-center">
+                    <h3 class="text-lg font-semibold text-corporate-blue mb-4">¿Interesado en este servicio?</h3>
+                    <p class="text-gray-600 mb-6">Contáctanos para obtener más información y descubrir cómo podemos ayudarte.</p>
+                    <a href="/contacto" class="inline-block bg-corporate-blue text-white text-center py-3 px-6 rounded-lg hover:bg-corporate-blue/90 transition-colors">
+                      Solicitar información
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="bg-corporate-yellow py-20">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-3xl font-bold text-corporate-blue mb-6">¿Listo para comenzar?</h2>
+        <p class="text-xl text-corporate-blue/80 mb-8 max-w-2xl mx-auto">
+          Nuestro equipo está preparado para ayudarte a alcanzar tus objetivos tecnológicos
+        </p>
+        <a href="/contacto" class="inline-block bg-corporate-blue text-white py-4 px-8 rounded-lg hover:bg-corporate-blue/90 transition-colors">
+          Contactar ahora
+        </a>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .scroll-mt-20 {
+    scroll-margin-top: 5rem;
+  }
+</style>
+
+<script>
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+</script>

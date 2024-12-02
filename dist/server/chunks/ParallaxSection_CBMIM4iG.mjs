@@ -1,0 +1,14 @@
+import { c as createComponent, r as renderTemplate, m as maybeRenderHead, a as addAttribute, b as createAstro } from './astro/server_BhKzNdWT.mjs';
+import 'kleur/colors';
+import 'clsx';
+/* empty css                         */
+
+const $$Astro = createAstro();
+const $$ParallaxSection = createComponent(($$result, $$props, $$slots) => {
+  const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
+  Astro2.self = $$ParallaxSection;
+  const { title, content, bgColor = "bg-white", textColor = "text-gray-600" } = Astro2.props;
+  return renderTemplate`${maybeRenderHead()}<section${addAttribute(`py-32 relative ${bgColor} overflow-hidden`, "class")} data-parallax data-astro-cid-tiamqpcm> <div class="container mx-auto px-4" data-astro-cid-tiamqpcm> <div class="max-w-4xl mx-auto" data-astro-cid-tiamqpcm> <div class="relative" data-astro-cid-tiamqpcm> <div class="absolute inset-0 bg-gradient-to-r from-corporate-blue/5 via-corporate-yellow/5 to-corporate-blue/5 rounded-3xl transform rotate-1" data-astro-cid-tiamqpcm></div> <div class="relative bg-white rounded-2xl shadow-xl p-12 backdrop-blur-sm transform hover:scale-[1.01] transition-all duration-500" data-gsap="fade-up" data-astro-cid-tiamqpcm> <div class="absolute inset-0 bg-gradient-to-br from-corporate-blue/5 to-corporate-yellow/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" data-astro-cid-tiamqpcm></div> <h2 class="text-4xl font-bold text-corporate-blue mb-12 text-center reveal-text" data-astro-cid-tiamqpcm> <span class="relative" data-astro-cid-tiamqpcm> ${title} <span class="absolute -bottom-2 left-0 w-full h-1 bg-corporate-yellow transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" data-astro-cid-tiamqpcm></span> </span> </h2> <div${addAttribute(`space-y-8 ${textColor}`, "class")} data-astro-cid-tiamqpcm> ${content.map((paragraph, index) => renderTemplate`<p class="text-lg leading-relaxed reveal-text"${addAttribute(`transition-delay: ${index * 100}ms`, "style")} data-astro-cid-tiamqpcm> ${paragraph} </p>`)} </div> </div> </div> </div> </div> <div class="absolute inset-0 -z-10" data-astro-cid-tiamqpcm> <div class="floating-shapes" data-astro-cid-tiamqpcm></div> </div> <div class="absolute inset-0 pointer-events-none" data-astro-cid-tiamqpcm> <div class="absolute top-0 left-1/4 w-72 h-72 bg-corporate-yellow/10 rounded-full mix-blend-multiply filter blur-xl animate-blob" data-astro-cid-tiamqpcm></div> <div class="absolute top-0 right-1/4 w-72 h-72 bg-corporate-blue/10 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000" data-astro-cid-tiamqpcm></div> <div class="absolute bottom-0 left-1/3 w-72 h-72 bg-corporate-yellow/10 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000" data-astro-cid-tiamqpcm></div> </div> </section>  `;
+}, "/home/project/src/components/ParallaxSection.astro", void 0);
+
+export { $$ParallaxSection as $ };

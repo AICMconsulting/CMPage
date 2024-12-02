@@ -1,0 +1,1 @@
+import"./Layout.astro_astro_type_script_index_0_lang.BsPV50OZ.js";document.querySelectorAll('a[href^="#"]').forEach(t=>{t.addEventListener("click",function(r){r.preventDefault();const e=document.querySelector(this.getAttribute("href"));e&&e.scrollIntoView({behavior:"smooth"})})});

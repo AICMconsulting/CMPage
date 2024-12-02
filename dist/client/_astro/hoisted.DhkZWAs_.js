@@ -1,0 +1,1 @@
+import"./Layout.astro_astro_type_script_index_0_lang.BsPV50OZ.js";const r=()=>{const o=new IntersectionObserver(e=>{e.forEach(t=>{t.isIntersecting&&t.target.classList.add("visible")})},{threshold:.2,rootMargin:"0px 0px -10% 0px"});document.querySelectorAll(".reveal-text").forEach(e=>o.observe(e))};document.addEventListener("astro:page-load",r);r();

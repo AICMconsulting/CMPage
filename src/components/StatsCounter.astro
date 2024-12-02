@@ -1,0 +1,78 @@
+---
+interface Props {
+  value: number;
+  label: string;
+  prefix?: string;
+  suffix?: string;
+}
+
+const { value, label, prefix = '', suffix = '' } = Astro.props;
+---
+
+<div class="stat-card" data-gsap="fade-up">
+  <div class="relative bg-white/10 rounded-lg overflow-hidden transform hover:scale-105 transition-all duration-500">
+    <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+    <div class="p-8 relative z-10">
+      <div class="flex flex-col items-center justify-center">
+        <div class="relative">
+          <span class="text-corporate-yellow text-6xl font-bold counter" data-value={value} data-prefix={prefix} data-suffix={suffix}>0</span>
+          <div class="absolute -inset-4 bg-corporate-yellow/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        </div>
+        <p class="text-white text-xl mt-6 text-center transform group-hover:scale-105 transition-transform duration-300">{label}</p>
+      </div>
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-t from-corporate-blue/50 to-transparent"></div>
+    <div class="absolute -bottom-2 -right-2 w-32 h-32 bg-corporate-yellow/10 rounded-full blur-2xl"></div>
+  </div>
+</div>
+
+<script>
+  class Counter {
+    constructor(element) {
+      this.element = element;
+      this.value = parseInt(element.dataset.value);
+      this.prefix = element.dataset.prefix || '';
+      this.suffix = element.dataset.suffix || '';
+      this.current = 0;
+      this.increment = this.value / 50;
+      this.interval = 50;
+      this.animating = false;
+    }
+
+    start() {
+      if (this.animating) return;
+      this.animating = true;
+
+      const updateCounter = () => {
+        if (this.current < this.value) {
+          this.current += this.increment;
+          this.element.textContent = `${this.prefix}${Math.floor(this.current)}${this.suffix}`;
+          requestAnimationFrame(updateCounter);
+        } else {
+          this.element.textContent = `${this.prefix}${this.value}${this.suffix}`;
+          this.animating = false;
+        }
+      };
+      updateCounter();
+    }
+  }
+
+  const initCounters = () => {
+    const counters = document.querySelectorAll('.counter');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          new Counter(entry.target).start();
+        }
+      });
+    }, { 
+      threshold: 0.2,
+      rootMargin: '0px 0px -10% 0px'
+    });
+
+    counters.forEach(counter => observer.observe(counter));
+  };
+
+  document.addEventListener('astro:page-load', initCounters);
+  initCounters();
+</script>

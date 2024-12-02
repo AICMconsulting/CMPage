@@ -1,0 +1,58 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AboutHero from '../components/AboutHero.astro';
+import MissionVision from '../components/MissionVision.astro';
+import ValueProposition from '../components/ValueProposition.astro';
+import ParallaxSection from '../components/ParallaxSection.astro';
+
+const specializedServices = [
+  "Configuración y optimización de herramientas SaaS como Jira, Confluence, ZohoDesk, DocuSign",
+  "Staffing y manpower especializado",
+  "Interventoría técnica en proyectos",
+  "Soporte técnico especializado proactivo y reactivo",
+  "Gestión de infraestructura cloud en Microsoft Azure"
+];
+
+const aboutContent = [
+  "CM Consulting SAS es una empresa de tecnología dedicada a ofrecer soluciones innovadoras que impulsan la transformación digital de nuestros clientes. Somos parte del programa Microsoft AI Cloud Partner Program.",
+  "Como partner de Microsoft en tres áreas: Data & IA, Infrastructure, y Digital and App Innovation, hemos sido reconocidos como el mejor partner de Microsoft Azure por IngramMicro.",
+  "Desde 2012, nuestro equipo de profesionales certificados está comprometido con el éxito de nuestros clientes, brindando servicios en la nube, desarrollo de software y consultoría tecnológica."
+];
+---
+
+<Layout title="Nosotros - CM Consulting">
+  <AboutHero 
+    title="Quiénes Somos" 
+    subtitle="Impulsando la transformación digital empresarial desde 2012"
+  />
+
+  <ParallaxSection
+    title="Nuestra Historia"
+    content={aboutContent}
+  />
+
+  <MissionVision
+    mission="En CM Consulting SAS, nos dedicamos a impulsar la transformación digital y fomentar la innovación tecnológica de nuestros clientes. Nuestra misión es ser el aliado estratégico que facilita la evolución tecnológica de las empresas, permitiéndoles alcanzar sus objetivos mediante soluciones únicas, eficientes y personalizadas."
+    vision="Nos enfocamos en acompañar a nuestros clientes hacia un futuro digital sostenible, optimizando sus procesos y mejorando su competitividad. Nuestro objetivo es posicionarnos como líderes en la implementación de soluciones de transformación digital del sector corporativo."
+  />
+
+  <ValueProposition />
+
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-corporate-blue text-center mb-12">Servicios Especializados</h2>
+      <div class="max-w-3xl mx-auto bg-white rounded-lg shadow-lg p-8">
+        <ul class="space-y-4">
+          {specializedServices.map(service => (
+            <li class="flex items-start">
+              <svg class="w-6 h-6 text-corporate-yellow mt-1 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span class="text-gray-700">{service}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+</Layout>

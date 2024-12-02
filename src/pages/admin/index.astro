@@ -1,0 +1,46 @@
+---
+import Layout from '../../layouts/AdminLayout.astro';
+import { getConnection } from '../../db/config.js';
+
+// Verificar autenticación
+if (!Astro.cookies.get('adminToken')) {
+  return Astro.redirect('/admin/login');
+}
+
+let stats = { recordset: [{ totalPosts: 0, publishedPosts: 0, totalComments: 0, approvedComments: 0, totalTestimonials: 0, approvedTestimonials: 0 }] };
+let recentPosts = { recordset: [] };
+let pendingComments = { recordset: [] };
+
+try {
+  const pool = await getConnection();
+  
+  // Ejecutar queries en paralelo
+  [stats, recentPosts, pendingComments] = await Promise.all([
+    pool.request().query(`
+      SELECT
+        (SELECT COUNT(*) FROM BlogPosts) as totalPosts,
+        (SELECT COUNT(*) FROM BlogPosts WHERE IsPublished = 1) as publishedPosts,
+        (SELECT COUNT(*) FROM Comments) as totalComments,
+        (SELECT COUNT(*) FROM Comments WHERE IsApproved = 1) as approvedComments,
+        (SELECT COUNT(*) FROM Testimonials) as totalTestimonials,
+        (SELECT COUNT(*) FROM Testimonials WHERE IsApproved = 1) as approvedTestimonials
+    `),
+    pool.request().query(`
+      SELECT TOP 5 Title, PublishedDate, IsPublished
+      FROM BlogPosts
+      ORDER BY PublishedDate DESC
+    `),
+    pool.request().query(`
+      SELECT TOP 5 c.Content, c.Author, c.CreatedAt, b.Title as PostTitle
+      FROM Comments c
+      JOIN BlogPosts b ON c.BlogPostId = b.Id
+      WHERE c.IsApproved = 0
+      ORDER BY c.CreatedAt DESC
+    `)
+  ]);
+} catch (error) {
+  console.error('Error fetching admin data:', error);
+}
+---
+
+<!-- Rest of the template remains the same -->
