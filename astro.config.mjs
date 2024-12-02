@@ -1,10 +1,9 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import mdx from '@astrojs/mdx';
-import node from '@astrojs/node';
 
 export default defineConfig({
-  output: 'static', // Cambiar el tipo de salida a 'static'
+  output: 'static',
   integrations: [
     tailwind(),
     mdx(),
@@ -15,8 +14,9 @@ export default defineConfig({
       wrap: true
     }
   },
-  server: {
-    host: true,
-    port: 4321
-  }
+  build: {
+    assets: 'assets'
+  },
+  site: 'https://your-azure-static-web-app-url.azurestaticapps.net',
+  base: '/'
 });
