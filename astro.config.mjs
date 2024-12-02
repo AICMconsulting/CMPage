@@ -4,10 +4,7 @@ import mdx from '@astrojs/mdx';
 import node from '@astrojs/node';
 
 export default defineConfig({
-  output: 'server',
-  adapter: node({
-    mode: 'standalone'
-  }),
+  output: 'static', // Cambiar el tipo de salida a 'static'
   integrations: [
     tailwind(),
     mdx(),
