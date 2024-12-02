@@ -1,4 +1,5 @@
-import { sendContactEmail, validateEmailData } from '../../utils/email/index.js';
+import { validateEmailData, createContactEmailTemplate } from '../../utils/email/index.js';
+import { initEmailService, sendContactForm } from '../../utils/email/service.js';
 
 export async function POST({ request }) {
   try {
@@ -19,10 +20,19 @@ export async function POST({ request }) {
       );
     }
 
-    // Send email
-    const result = await sendContactEmail(data);
+    // Initialize EmailJS
+    await initEmailService();
+
+    // Create form data for EmailJS
+    const formData = new FormData();
+    Object.entries(data).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
+
+    // Send email using EmailJS
+    const result = await sendContactForm(formData);
     
-    if (result.success) {
+    if (result.status === 200) {
       return new Response(
         JSON.stringify({ success: true }),
         { 
@@ -31,7 +41,7 @@ export async function POST({ request }) {
         }
       );
     } else {
-      throw new Error(result.error || 'Error al enviar el correo');
+      throw new Error('Error sending email');
     }
   } catch (error) {
     console.error('Contact API error:', {

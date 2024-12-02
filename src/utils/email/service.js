@@ -12,9 +12,8 @@ export async function initEmailService() {
   }
 }
 
-export async function sendContactForm(form) {
+export async function sendContactForm(formData) {
   try {
-    const formData = new FormData(form);
     const data = Object.fromEntries(formData);
     
     // Validate form data
@@ -22,6 +21,15 @@ export async function sendContactForm(form) {
     if (!validation.isValid) {
       throw new Error(validation.errors.join(', '));
     }
+
+    // Create a form element to use with EmailJS
+    const form = document.createElement('form');
+    formData.forEach((value, key) => {
+      const input = document.createElement('input');
+      input.name = key;
+      input.value = value;
+      form.appendChild(input);
+    });
 
     const result = await emailjs.sendForm(
       emailConfig.serviceId,
