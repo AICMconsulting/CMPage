@@ -4,21 +4,20 @@ import Layout from '../layouts/Layout.astro';
 <script>
   import emailjs from 'emailjs-com';
 
-  function sendEmail(event) {
+  function sendEmail(event: SubmitEvent): void {
     event.preventDefault(); // Previene el comportamiento por defecto del formulario
 
     emailjs
       .sendForm(
         'service_0l6pjmv', // Reemplaza con tu Service ID
         'template_hcmbmjf', // Reemplaza con tu Template ID
-        event.target, // El formulario enviado
+        event.target as HTMLFormElement, // El formulario enviado
         's4h-HviAW_hMfONCi' // Reemplaza con tu Public Key
       )
       .then(
         (result) => {
           alert('Mensaje enviado con éxito. ¡Gracias por contactarnos!');
           console.log('EmailJS Response:', result.text);
-          event.target.reset(); // Limpia el formulario tras el envío
         },
         (error) => {
           alert('Hubo un error al enviar el mensaje. Por favor, intenta nuevamente.');
